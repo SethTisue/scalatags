@@ -15,11 +15,12 @@ lazy val scalatags = crossProject
       "com.lihaoyi" %%% "sourcecode" % "0.1.1",
       "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided"
     ) ++ (
-      if (scalaVersion.value startsWith "2.11.") Nil
-      else Seq(
-        "org.scalamacros" %% s"quasiquotes" % "2.0.0" % "provided",
-        compilerPlugin("org.scalamacros" % s"paradise" % "2.0.0" cross CrossVersion.full)
-      )
+      if (scalaVersion.value startsWith "2.10.")
+        Seq(
+          "org.scalamacros" %% s"quasiquotes" % "2.0.0" % "provided",
+          compilerPlugin("org.scalamacros" % s"paradise" % "2.0.0" cross CrossVersion.full)
+        )
+      else Seq()
     ),
     addCompilerPlugin("com.lihaoyi" %% "acyclic" % "0.1.2"),
     libraryDependencies ++= (
