@@ -56,7 +56,7 @@ lazy val scalatags = crossProject(JVMPlatform, JSPlatform, NativePlatform)
           </developer>
         </developers>
   )
-  .jvmSettings()
+  .jvmSettings(fortifySettings)
   .jsSettings(
     libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.9.3"
@@ -116,3 +116,14 @@ lazy val readme = scalatex.ScalatexReadme(
     )
   }).evaluated
 )
+
+lazy val fortifySettings = Seq(
+  credentials += Credentials(
+    Path.userHome / ".lightbend" / "commercial.credentials"),
+  resolvers += Resolver.url(
+    "lightbend-commercial-releases",
+    new URL("http://repo.lightbend.com/commercial-releases/"))(
+    Resolver.ivyStylePatterns),
+  libraryDependencies += compilerPlugin(
+    "com.lightbend" %% "scala-fortify" % "bbc8c182" classifier "assembly"),
+  scalacOptions += s"-P:fortify:build=scalatags")
