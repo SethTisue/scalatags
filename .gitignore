@@ -1,5 +1,6 @@
 target/*
 example/target/*
+scalatags/native/
 scalatags/target/*
 scalatags/js/target/*
 scalatags/jvm/target/*
