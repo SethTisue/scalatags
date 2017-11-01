@@ -125,5 +125,6 @@ lazy val fortifySettings = Seq(
     new URL("http://repo.lightbend.com/commercial-releases/"))(
     Resolver.ivyStylePatterns),
   libraryDependencies += compilerPlugin(
-    "com.lightbend" %% "scala-fortify" % "2936132d" classifier "assembly"),
+    "com.lightbend" %% "scala-fortify" % "deb2b0d3"
+      classifier "assembly" cross CrossVersion.patch),
   scalacOptions += s"-P:fortify:build=scalatags")
